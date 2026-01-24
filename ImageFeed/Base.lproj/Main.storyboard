@@ -98,29 +98,97 @@
             </objects>
             <point key="canvasLocation" x="138.1679389312977" y="130.98591549295776"/>
         </scene>
-        <!--View Controller-->
+        <!--Profil View Controller-->
         <scene sceneID="Tvp-7E-6M6">
             <objects>
-                <viewController id="yHr-91-bB7" sceneMemberID="viewController">
+                <viewController id="yHr-91-bB7" customClass="ProfilViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xcw-WB-boH">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Екатерина Новикова" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xoF-cQ-VTB">
+                                <rect key="frame" x="16" y="130" width="377" height="27.666666666666657"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                <color key="textColor" name="YPWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@ekaterina_nov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1n-bT-sOe">
+                                <rect key="frame" x="16" y="165.66666666666666" width="377" height="16"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
+                                <color key="textColor" name="YP Gray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, world!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GgC-91-JnC">
+                                <rect key="frame" x="16" y="189.66666666666666" width="95" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="YPWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QEv-3L-Ba0">
+                                <rect key="frame" x="353" y="75" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="EkG-Lh-Cu5"/>
+                                    <constraint firstAttribute="width" constant="24" id="NwP-Np-H2A"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" image="Exit">
+                                    <color key="titleColor" name="YP Red"/>
+                                </state>
+                                <connections>
+                                    <action selector="outButton:" destination="yHr-91-bB7" eventType="touchUpInside" id="mn7-gN-M3x"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo" translatesAutoresizingMaskIntoConstraints="NO" id="efP-sn-8Zd">
+                                <rect key="frame" x="16" y="52" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="W51-qR-tZI"/>
+                                    <constraint firstAttribute="width" constant="70" id="Xvc-yZ-5kg"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="736-xe-eht"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="YP Black"/>
+                        <constraints>
+                            <constraint firstItem="xoF-cQ-VTB" firstAttribute="top" secondItem="efP-sn-8Zd" secondAttribute="bottom" constant="8" id="1fW-as-IEH"/>
+                            <constraint firstItem="QEv-3L-Ba0" firstAttribute="top" secondItem="Xcw-WB-boH" secondAttribute="top" constant="75" id="Abu-RW-Tt1"/>
+                            <constraint firstItem="efP-sn-8Zd" firstAttribute="top" secondItem="Xcw-WB-boH" secondAttribute="top" constant="52" id="EDn-QO-0T9"/>
+                            <constraint firstItem="xoF-cQ-VTB" firstAttribute="leading" secondItem="736-xe-eht" secondAttribute="leading" constant="16" id="EHY-0Z-Mlm"/>
+                            <constraint firstAttribute="trailing" secondItem="QEv-3L-Ba0" secondAttribute="trailing" constant="16" id="KVp-mK-IUJ"/>
+                            <constraint firstItem="736-xe-eht" firstAttribute="trailing" secondItem="xoF-cQ-VTB" secondAttribute="trailing" id="QdW-RX-cdu"/>
+                            <constraint firstItem="GgC-91-JnC" firstAttribute="top" secondItem="U1n-bT-sOe" secondAttribute="bottom" constant="8" id="XJY-Nb-sH1"/>
+                            <constraint firstItem="U1n-bT-sOe" firstAttribute="leading" secondItem="736-xe-eht" secondAttribute="leading" constant="16" id="b62-o9-WIl"/>
+                            <constraint firstItem="736-xe-eht" firstAttribute="trailing" secondItem="U1n-bT-sOe" secondAttribute="trailing" id="hM6-Bb-uT3"/>
+                            <constraint firstItem="U1n-bT-sOe" firstAttribute="top" secondItem="xoF-cQ-VTB" secondAttribute="bottom" constant="8" id="vN3-DE-e2S"/>
+                            <constraint firstItem="efP-sn-8Zd" firstAttribute="leading" secondItem="736-xe-eht" secondAttribute="leading" constant="16" id="y8w-TY-Hbc"/>
+                            <constraint firstItem="GgC-91-JnC" firstAttribute="leading" secondItem="736-xe-eht" secondAttribute="leading" constant="16" id="zor-VG-EkO"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="profilImage" destination="efP-sn-8Zd" id="NRm-i9-8GB"/>
+                        <outlet property="userInstagram" destination="U1n-bT-sOe" id="lXZ-YA-SGf"/>
+                        <outlet property="userName" destination="xoF-cQ-VTB" id="0Up-Kl-mz3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a96-Bf-Hf6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="844" y="131"/>
+            <point key="canvasLocation" x="843.51145038167931" y="130.98591549295776"/>
         </scene>
     </scenes>
     <resources>
         <image name="Active" width="44" height="44"/>
+        <image name="Exit" width="24" height="24"/>
+        <image name="Photo" width="140" height="140"/>
         <namedColor name="YP Black">
             <color red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
+        <namedColor name="YP Gray">
+            <color red="0.68235294117647061" green="0.68627450980392157" blue="0.70588235294117652" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="YP Red">
             <color red="0.96078431372549022" green="0.41960784313725491" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="YPWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
