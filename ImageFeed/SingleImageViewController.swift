@@ -21,10 +21,13 @@ class SingleImageViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var shareButtonOutlet: UIButton!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        shareButtonOutlet.layer.cornerRadius = shareButtonOutlet.bounds.width / 2
+        shareButtonOutlet.clipsToBounds = true
         guard let image = image else { return }
         imageView.image = image
         imageScale(image)
@@ -34,6 +37,10 @@ class SingleImageViewController: UIViewController {
     
     @IBAction func backButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func shareButton(_ sender: UIButton) {
+        sender.layer.cornerRadius = sender.bounds.width / 2
     }
     
     private func imageScale(_ image: UIImage) {

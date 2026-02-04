@@ -142,16 +142,32 @@
                                             <action selector="backButton:" destination="bYg-8k-Qqy" eventType="touchUpInside" id="YGW-1q-ago"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEE-J5-n3f">
+                                        <rect key="frame" x="162" y="751" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="fj7-SM-e6V"/>
+                                            <constraint firstAttribute="height" constant="50" id="tjO-sg-ihu"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" image="sharebutton 1" title="">
+                                            <color key="baseBackgroundColor" name="YP Black"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="shareButton:" destination="bYg-8k-Qqy" eventType="touchUpInside" id="V48-rx-HPe"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="NEE-J5-n3f" firstAttribute="leading" secondItem="ugo-I4-g90" secondAttribute="leading" constant="162" id="0ot-Ub-71N"/>
                                     <constraint firstItem="ZeL-XN-Y26" firstAttribute="leading" secondItem="iTW-To-K3X" secondAttribute="leading" id="35W-cE-7XO"/>
                                     <constraint firstItem="ZeL-XN-Y26" firstAttribute="top" secondItem="ugo-I4-g90" secondAttribute="top" id="Jx4-bu-Lre"/>
                                     <constraint firstItem="ZeL-XN-Y26" firstAttribute="bottom" secondItem="ugo-I4-g90" secondAttribute="bottom" id="KKd-Ws-9a9"/>
-                                    <constraint firstItem="ZYC-RT-7m4" firstAttribute="leading" secondItem="ZeL-XN-Y26" secondAttribute="leading" constant="8" id="LcJ-Hb-b31"/>
+                                    <constraint firstItem="ZYC-RT-7m4" firstAttribute="leading" secondItem="ugo-I4-g90" secondAttribute="leading" constant="8" id="LcJ-Hb-b31"/>
                                     <constraint firstItem="ZeL-XN-Y26" firstAttribute="centerX" secondItem="iTW-To-K3X" secondAttribute="centerX" id="Oee-dF-MRO"/>
                                     <constraint firstItem="ZYC-RT-7m4" firstAttribute="top" secondItem="ugo-I4-g90" secondAttribute="top" constant="88" id="QV0-xa-8Tw"/>
                                     <constraint firstAttribute="bottom" secondItem="ZeL-XN-Y26" secondAttribute="bottom" id="VJ6-bd-cUH"/>
                                     <constraint firstAttribute="trailing" secondItem="ZeL-XN-Y26" secondAttribute="trailing" id="Vyo-3v-Uxx"/>
+                                    <constraint firstItem="ugo-I4-g90" firstAttribute="bottom" secondItem="NEE-J5-n3f" secondAttribute="bottom" constant="51" id="z4h-yj-2yv"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="1yd-PS-tQQ"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="ugo-I4-g90"/>
@@ -170,6 +186,7 @@
                     <connections>
                         <outlet property="imageView" destination="ZeL-XN-Y26" id="9hh-tw-3GN"/>
                         <outlet property="scrollView" destination="iTW-To-K3X" id="Fed-nx-GRW"/>
+                        <outlet property="shareButtonOutlet" destination="NEE-J5-n3f" id="oh0-dL-2zY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gpn-O8-XXr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -259,6 +276,7 @@
         <image name="Backward" width="24" height="24"/>
         <image name="Exit" width="24" height="24"/>
         <image name="Photo" width="140" height="140"/>
+        <image name="sharebutton 1" width="22" height="21"/>
         <image name="tab_editorial_active" width="30" height="30"/>
         <image name="tab_profil_active" width="30" height="30"/>
         <namedColor name="YP Black">
