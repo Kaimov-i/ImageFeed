@@ -40,38 +40,31 @@ class SingleImageViewController: UIViewController {
     }
     
     @IBAction func shareButton(_ sender: UIButton) {
-        sender.layer.cornerRadius = sender.bounds.width / 2
+        didTapShareButton()
     }
     
+    private func didTapShareButton() {
+        guard let image = imageView.image else { return }
+        let activivtyVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+    present(activivtyVC, animated: true)
+    }
     private func imageScale(_ image: UIImage) {
         scrollView.minimumZoomScale = minimumZoomScale
         scrollView.maximumZoomScale = maximumZoomScale
         
         view.layoutIfNeeded()
-        let hightScale = scrollView.bounds.size.height / image.size.height
-        let widthScale = scrollView.bounds.size.width / image.size.width
         
-        let theoricalScale = min(hightScale, widthScale)
-        let scale = min(maximumZoomScale, max(minimumZoomScale, theoricalScale))
-        
-        self.scrollView.setZoomScale(scale, animated: true)
-        self.scrollView.layoutIfNeeded()
-        var center = imageView.frame
-    
-        if image.size.width < scrollView.bounds.width {
-            let originX = (scrollView.bounds.width - image.size.width) / 2.0
-            center.origin.x = originX
-        } else {
-            center.origin.x = 0
-        }
-        
-        if image.size.height < scrollView.bounds.width {
-            let originY = (scrollView.bounds.height - image.size.height) / 2
-            center.origin.y = originY
-        } else {
-            center.origin.y = 0
-        }
-        scrollView.setContentOffset(center.origin, animated: false)
+        let visibleRectSize = scrollView.bounds.size
+            let imageSize = image.size
+            let hScale = visibleRectSize.width / imageSize.width
+            let vScale = visibleRectSize.height / imageSize.height
+            let scale = min(maximumZoomScale, max(minimumZoomScale, min(hScale, vScale)))
+            scrollView.setZoomScale(scale, animated: false)
+            scrollView.layoutIfNeeded()
+            let newContentSize = scrollView.contentSize
+            let x = (newContentSize.width - visibleRectSize.width) / 2
+            let y = (newContentSize.height - visibleRectSize.height) / 2
+            scrollView.setContentOffset(CGPoint(x: x, y: y), animated: false)
     }
     
     func centerImage() {
