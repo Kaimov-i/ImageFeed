@@ -12,12 +12,10 @@ class ProfilViewController: UIViewController {
     @IBOutlet weak var profilImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userInstagram: UILabel!
+    @IBOutlet weak var outButtonOutlet: UIButton!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-       
-    }
+    @IBOutlet weak var userDescription: UILabel!
     
     @IBAction func outButton(_ sender: UIButton) {
     }
