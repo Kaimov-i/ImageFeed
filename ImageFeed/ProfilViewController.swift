@@ -20,7 +20,7 @@ class ProfilViewController: UIViewController {
     
     let userName: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 23, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 23, weight: .bold)
         label.text = "Екатерина Новикова"
         label.textColor = .ypWhite
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +29,7 @@ class ProfilViewController: UIViewController {
     
     let instLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 13, weight: .light)
+        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         label.text = "@ekaterina_nov"
         label.textColor = .ypGray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +38,7 @@ class ProfilViewController: UIViewController {
     
     let userDescription: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 13, weight: .light)
+        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         label.text = "Hello, world!"
         label.textColor = .ypWhite
         label.translatesAutoresizingMaskIntoConstraints = false
