@@ -81,8 +81,10 @@ class ProfilViewController: UIViewController {
             userDescription.topAnchor.constraint(equalTo: instLabel.bottomAnchor, constant: 8),
             userDescription.leadingAnchor.constraint(equalTo: userImage.leadingAnchor),
             
-            outButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            outButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             outButton.centerYAnchor.constraint(equalTo: userImage.centerYAnchor),
+            outButton.widthAnchor.constraint(equalToConstant: 24),
+            outButton.heightAnchor.constraint(equalToConstant: 24)
         ])
     }
     
