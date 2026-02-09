@@ -14,6 +14,8 @@ class SingleImageViewController: UIViewController {
             guard isViewLoaded else { return }
             guard let image = image else { return }
             imageView.image = image
+            imageView.frame.size = image.size
+            imageScale(image)
         }
     }
     private let minimumZoomScale = 0.1
@@ -68,12 +70,11 @@ class SingleImageViewController: UIViewController {
     }
     
     func centerImage() {
-        
+       
     }
 }
     extension SingleImageViewController: UIScrollViewDelegate {
         func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-            
             imageView
         }
     }
