@@ -77,10 +77,6 @@ extension ImageListViewController: UITableViewDataSource {
         return imagesListCell
     }
     
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        1
-    }
 }
 
 extension ImageListViewController: UITableViewDelegate {
