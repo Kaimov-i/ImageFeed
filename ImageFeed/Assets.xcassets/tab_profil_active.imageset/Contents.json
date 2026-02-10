@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "tab_profil_active.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Exit.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },

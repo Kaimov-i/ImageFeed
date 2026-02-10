@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "shareButton.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Exit.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
