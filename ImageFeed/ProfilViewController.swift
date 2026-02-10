@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfilViewController: UIViewController {
+final class ProfilViewController: UIViewController {
     
     let userImage: UIImageView = {
         let imageView = UIImageView()
@@ -53,33 +53,34 @@ class ProfilViewController: UIViewController {
         return button
     }()
     
-    
+    private lazy var profilStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [userName, instLabel, userDescription])
+        stackView.spacing = 8
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setupConstraints()
     }
     
-
     private func setupViews() {
         view.addSubview(userImage)
-        view.addSubview(userName)
-        view.addSubview(instLabel)
-        view.addSubview(userDescription)
+        view.addSubview(profilStackView)
         view.addSubview(outButton)
-        
+    }
+    
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             userImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
             userImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             
-            userName.topAnchor.constraint(equalTo: userImage.bottomAnchor, constant: 8),
-            userName.leadingAnchor.constraint(equalTo: userImage.leadingAnchor),
-            
-            instLabel.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 8),
-            instLabel.leadingAnchor.constraint(equalTo: userImage.leadingAnchor),
-            
-            userDescription.topAnchor.constraint(equalTo: instLabel.bottomAnchor, constant: 8),
-            userDescription.leadingAnchor.constraint(equalTo: userImage.leadingAnchor),
+            profilStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            profilStackView.topAnchor.constraint(equalTo: userImage.bottomAnchor, constant: 8),
             
             outButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             outButton.centerYAnchor.constraint(equalTo: userImage.centerYAnchor),
