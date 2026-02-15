@@ -6,9 +6,17 @@
 //
 
 import UIKit
-import WebKit
 
-class AuthViewController: UIViewController {
+class AuthViewController: UIViewController, WebViewViewControllerDelegate {
+    
+    func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
+        
+    }
+    
+    func webViewViewControllerDidCancel(_ vc: WebViewViewController) {
+        vc.dismiss(animated: true)
+    }
+    
     
     let identifireSegue = "ShowWebView"
     
@@ -30,10 +38,19 @@ class AuthViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let webVC = segue.destination as? WebViewViewController else { return }
-        webVC.webView = WKWebView()
+        if segue.identifier == identifireSegue {
+            guard
+                let webVC = segue.destination as? WebViewViewController
+            else {
+                assertionFailure("Failed to prepare for \(identifireSegue)")
+                return
+            }
+            webVC.delegate = self
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
     }
-   
+    
     
     @IBAction func logInButton(_ sender: UIButton) {
         
