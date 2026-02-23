@@ -149,6 +149,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/../../../../../../../../../Users/kaimovyandex.ru/YandexPracticum/ImageFeed/ImageFeed",
+					"$(PROJECT_DIR)/ImageFeed",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ImageFeed/Info.plist;
@@ -189,6 +190,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/../../../../../../../../../Users/kaimovyandex.ru/YandexPracticum/ImageFeed/ImageFeed",
+					"$(PROJECT_DIR)/ImageFeed",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ImageFeed/Info.plist;
