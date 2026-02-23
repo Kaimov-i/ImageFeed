@@ -7,22 +7,39 @@
 import WebKit
 import UIKit
 
-class WebViewViewController: UIViewController {
+enum WebViewConstants {
+    static let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
+    static let unsplashPostRequest = "https://unsplash.com/oauth/token"
+}
+
+final class WebViewViewController: UIViewController {
     
-    @IBOutlet weak var progressView: UIProgressView!
-    var delegate: WebViewViewControllerDelegate?
+    @IBOutlet private var progressView: UIProgressView!
+    @IBOutlet private var webView: WKWebView!
+    weak var delegate: WebViewViewControllerDelegate?
     
-    enum WebViewConstants {
-        static let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        webView.addObserver(
+            self,
+            forKeyPath: #keyPath(WKWebView.estimatedProgress),
+            options: .new,
+            context: nil
+        )
+        updateProgress()
     }
     
-    @IBOutlet var webView: WKWebView!
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), context:  nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.navigationDelegate = self
         loadAuthView()
     }
+    
     private func loadAuthView() {
         guard var urlComponents = URLComponents(string: WebViewConstants.unsplashAuthorizeURLString) else { return }
         
@@ -34,10 +51,11 @@ class WebViewViewController: UIViewController {
         ]
         
         guard let url = urlComponents.url else { return }
-        
         let request = URLRequest(url: url)
         webView.load(request)
     }
+    
+  
     
     private func code(from navigationAction: WKNavigationAction) -> String? {
         if
@@ -51,6 +69,29 @@ class WebViewViewController: UIViewController {
         } else {
             return nil
         }
+    }
+    
+    override  func observeValue(
+        forKeyPath keyPath: String?,
+        of object: Any?,
+        change: [NSKeyValueChangeKey : Any]?,
+        context: UnsafeMutableRawPointer?
+    ) {
+        if keyPath == #keyPath(WKWebView.estimatedProgress) {
+            updateProgress()
+        } else {
+            super.observeValue(
+                forKeyPath: keyPath,
+                of: object,
+                change: change,
+                context: context
+            )
+        }
+    }
+    
+    private func updateProgress() {
+        progressView.progress = Float(webView.estimatedProgress)
+        progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
     }
 }
 

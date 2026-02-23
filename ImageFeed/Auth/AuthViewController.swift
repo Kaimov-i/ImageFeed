@@ -9,8 +9,12 @@ import UIKit
 
 class AuthViewController: UIViewController, WebViewViewControllerDelegate {
     
-    func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
+    private func loadToken() {
         
+    }
+    
+    func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
+       
     }
     
     func webViewViewControllerDidCancel(_ vc: WebViewViewController) {
@@ -52,8 +56,5 @@ class AuthViewController: UIViewController, WebViewViewControllerDelegate {
     }
     
     
-    @IBAction func logInButton(_ sender: UIButton) {
-        
-    }
-    
+  
 }
