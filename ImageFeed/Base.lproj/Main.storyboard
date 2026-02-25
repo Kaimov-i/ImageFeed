@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qel-NC-k35">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XP7-Ji-cMo">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -13,7 +13,7 @@
         <!--Auth View Controller-->
         <scene sceneID="cMO-W4-X1k">
             <objects>
-                <viewController id="PV1-7R-a9Z" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="PV1-7R-a9Z" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OMq-FW-TyR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,7 +23,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rFG-O9-ls2">
-                                <rect key="frame" x="16" y="646" width="361" height="48"/>
+                                <rect key="frame" x="16" y="680" width="361" height="48"/>
                                 <color key="backgroundColor" name="YPWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="zmG-Hj-owT"/>
@@ -39,7 +39,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="logInButton:" destination="PV1-7R-a9Z" eventType="touchUpInside" id="WbB-0A-nhg"/>
                                     <segue destination="iWh-gS-s5C" kind="show" identifier="ShowWebView" id="1HY-cP-asK"/>
                                 </connections>
                             </button>
@@ -60,7 +59,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C4i-lx-idI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4759.5419847328239" y="5.6338028169014089"/>
+            <point key="canvasLocation" x="816" y="-1094"/>
         </scene>
         <!--Web View View Controller-->
         <scene sceneID="YjO-hR-ZRr">
@@ -71,7 +70,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EEp-NM-oam">
-                                <rect key="frame" x="0.0" y="172" width="393" height="680"/>
+                                <rect key="frame" x="0.0" y="113" width="393" height="739"/>
                                 <color key="backgroundColor" name="YPWhite"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -79,7 +78,7 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HFH-xR-1Zt">
-                                <rect key="frame" x="0.0" y="172" width="393" height="4"/>
+                                <rect key="frame" x="0.0" y="113" width="393" height="4"/>
                                 <color key="progressTintColor" name="YP Black"/>
                             </progressView>
                         </subviews>
@@ -103,12 +102,32 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tHv-vi-C6v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3929.0076335877861" y="5.6338028169014089"/>
+            <point key="canvasLocation" x="1645" y="-1094"/>
+        </scene>
+        <!--Splash View Controller-->
+        <scene sceneID="dbA-Tn-lRV">
+            <objects>
+                <viewController id="XP7-Ji-cMo" customClass="SplashViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rv7-Xu-l8E">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="cBz-8i-eL6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <segue destination="qel-NC-k35" kind="presentation" identifier="showAuthenticationScreenSegueIdentifier" modalPresentationStyle="fullScreen" id="k0p-SO-MLt"/>
+                        <segue destination="gXW-21-AfR" kind="presentation" identifier="showPhotoScreenSegueIdentifier" modalPresentationStyle="fullScreen" id="ePU-jo-JCC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lgW-8o-dTH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1054" y="-708"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="11H-Yb-PrF">
             <objects>
                 <tabBarController id="gXW-21-AfR" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="SgR-PU-4Iq"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tcD-ZH-kmm">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -122,7 +141,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7SW-0K-Ueh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="173.2824427480916" y="5.6338028169014089"/>
+            <point key="canvasLocation" x="-112" y="-349"/>
         </scene>
         <!--ImageList-->
         <scene sceneID="tne-QT-ifu">
@@ -211,7 +230,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1017.5572519083969" y="-348.59154929577466"/>
+            <point key="canvasLocation" x="815" y="-349"/>
         </scene>
         <!--Single Image View Controller-->
         <scene sceneID="a5s-rm-bUs">
@@ -286,7 +305,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gpn-O8-XXr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1921.3740458015266" y="-349.29577464788736"/>
+            <point key="canvasLocation" x="1644" y="-349"/>
         </scene>
         <!--Profil View Controller-->
         <scene sceneID="Tvp-7E-6M6">
@@ -302,15 +321,16 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a96-Bf-Hf6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1017.5572519083969" y="350"/>
+            <point key="canvasLocation" x="-112" y="399"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MxL-5s-PJR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qel-NC-k35" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="a1P-nv-1dS"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yKG-ii-Trx">
-                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -320,7 +340,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mTr-zY-jMn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5686.259541984733" y="5.6338028169014089"/>
+            <point key="canvasLocation" x="-112" y="-1094"/>
         </scene>
     </scenes>
     <resources>

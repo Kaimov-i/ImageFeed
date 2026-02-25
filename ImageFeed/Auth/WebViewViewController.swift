@@ -7,17 +7,20 @@
 import WebKit
 import UIKit
 
+enum WebViewConstants {
+    static let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
+    static let unsplashAuthorizeTokenURLString = "https://unsplash.com/oauth/token"
+}
+
 final class WebViewViewController: UIViewController {
-    
+    // MARK: Outlets
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet var webView: WKWebView!
+    
+    // MARK: Publik Propeties
     var delegate: WebViewViewControllerDelegate?
     
-    enum WebViewConstants {
-        static let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
-        static let unsplashAuthorizeTokenURLString = "https://unsplash.com/oauth/token"
-    }
-    
-    @IBOutlet var webView: WKWebView!
+    // MARK: Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         webView.addObserver(
             self,
@@ -35,6 +38,7 @@ final class WebViewViewController: UIViewController {
             context: nil
         )
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.navigationDelegate = self
@@ -54,6 +58,8 @@ final class WebViewViewController: UIViewController {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
+    
+    // MARK: Private methods
     private func loadAuthView() {
         guard var urlComponents = URLComponents(string: WebViewConstants.unsplashAuthorizeURLString) else {
             print("не удалось создать urlComponents")
@@ -88,21 +94,6 @@ final class WebViewViewController: UIViewController {
         }
     }
     
-    private func makeOAuthTokenRequest(code: String) -> URLRequest? {
-        var urlComponents = URLComponents(string: WebViewConstants.unsplashAuthorizeTokenURLString)
-        let code = code
-        urlComponents?.queryItems = [
-            URLQueryItem(name: "client_id", value: Constants.accessKey),
-            URLQueryItem(name: "client_secret", value: Constants.secretKey),
-            URLQueryItem(name: "redirect_uri", value: Constants.redirectURI),
-            URLQueryItem(name: "code", value: code),
-            URLQueryItem(name: "grant_type", value: "authorization_code")
-        ]
-        guard let url = urlComponents?.url else { return nil }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        return request
-    }
     private func updateProgress() {
         progressView.progress = Float(webView.estimatedProgress)
         progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
