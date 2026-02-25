@@ -8,8 +8,9 @@
 import UIKit
 
 final class ProfilViewController: UIViewController {
-    
-    let userImage: UIImageView = {
+    // MARK: - Subviews
+
+    private let userImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Photo")
         imageView.layer.cornerRadius = imageView.bounds.width / 2
@@ -17,8 +18,8 @@ final class ProfilViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
-    let userName: UILabel = {
+
+    private let userName: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 23, weight: .bold)
         label.text = "Екатерина Новикова"
@@ -26,8 +27,8 @@ final class ProfilViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    let instLabel: UILabel = {
+
+    private let instLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         label.text = "@ekaterina_nov"
@@ -35,8 +36,8 @@ final class ProfilViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    let userDescription: UILabel = {
+
+    private let userDescription: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         label.text = "Hello, world!"
@@ -44,8 +45,8 @@ final class ProfilViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    let outButton: UIButton = {
+
+    private let outButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "Exit"), for: .normal)
         button.tintColor = .red
@@ -61,19 +62,24 @@ final class ProfilViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
+
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupViews()
         setupConstraints()
     }
-    
+
+    // MARK: - Private Methods
+
     private func setupViews() {
         view.addSubview(userImage)
         view.addSubview(profilStackView)
         view.addSubview(outButton)
     }
-    
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             userImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
@@ -88,5 +94,4 @@ final class ProfilViewController: UIViewController {
             outButton.heightAnchor.constraint(equalToConstant: 24)
         ])
     }
-    
 }

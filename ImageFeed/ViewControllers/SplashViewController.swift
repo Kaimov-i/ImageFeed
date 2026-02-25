@@ -7,13 +7,18 @@
 
 import UIKit
 
-class SplashViewController: UIViewController {
+final class SplashViewController: UIViewController {
+    // MARK: - Private Properties
+
     private let storageManager = OAuth2TokenStorage()
     private let showPhotoScreenSegueIdentifier = "showPhotoScreenSegueIdentifier"
     private let showAuthenticationScreenSegueIdentifier = "showAuthenticationScreenSegueIdentifier"
-    
+
+    // MARK: - Lifecycle
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
         if storageManager.token != nil {
             performSegue(withIdentifier: showPhotoScreenSegueIdentifier, sender: nil)
         } else {
@@ -22,7 +27,7 @@ class SplashViewController: UIViewController {
     }
 }
 
-extension SplashViewController:  AuthViewControllerDelegate {
+extension SplashViewController: AuthViewControllerDelegate {
     func didAuthenticate(_ vc: AuthViewController) {
         vc.dismiss(animated: true)
         performSegue(withIdentifier: showPhotoScreenSegueIdentifier, sender: nil)

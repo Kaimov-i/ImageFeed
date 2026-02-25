@@ -7,12 +7,13 @@
 
 import Foundation
 
-class OAuth2Service {
-   
+final class OAuth2Service {
+
     static let shared = OAuth2Service()
-    private init() {
-    }
-     func makeOAuthTokenRequest(code: String) -> URLRequest? {
+
+    private init() {}
+
+    private func makeOAuthTokenRequest(code: String) -> URLRequest? {
         var urlComponents = URLComponents(string: WebViewConstants.unsplashAuthorizeTokenURLString)
         urlComponents?.queryItems = [
             URLQueryItem(name: "client_id", value: Constants.accessKey),
@@ -26,29 +27,32 @@ class OAuth2Service {
         request.httpMethod = "POST"
         return request
     }
-    
-    func fetchToken(code: String, completion: @escaping (Result<OAuthTokenResponseBody, Error>) -> Void) {
-        guard  let  urlRequest = makeOAuthTokenRequest(code: code) else { return }
-        
-       let task = URLSession.shared.data(for: urlRequest) { result in
-           switch result {
-           case .success(let data):
-               let decoder = JSONDecoder()
-               decoder.keyDecodingStrategy = .convertFromSnakeCase
-               do {
-                   let tokenData = try decoder.decode(OAuthTokenResponseBody.self, from: data)
-                   completion(.success(tokenData))
-               } catch {
-                   completion(.failure(error))
-                   print(error)
-               }
-            
-           case .failure(let error):
-               completion(.failure(error))
-               print(error)
-           }
+
+    func fetchToken(
+        code: String,
+        completion: @escaping (Result<OAuthTokenResponseBody, Error>) -> Void
+    ) {
+        guard let urlRequest = makeOAuthTokenRequest(code: code) else { return }
+
+        let task = URLSession.shared.data(for: urlRequest) { result in
+            switch result {
+            case .success(let data):
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                do {
+                    let tokenData = try decoder.decode(OAuthTokenResponseBody.self, from: data)
+                    completion(.success(tokenData))
+                } catch {
+                    completion(.failure(error))
+                    print(error)
+                }
+
+            case .failure(let error):
+                completion(.failure(error))
+                print(error)
+            }
         }
         task.resume()
     }
 }
-

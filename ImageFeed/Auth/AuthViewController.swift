@@ -19,7 +19,7 @@ final class AuthViewController: UIViewController, WebViewViewControllerDelegate 
     
     // MARK: - Properties
     
-    let identifireSegue = "ShowWebView"
+    private let identifireSegue = "ShowWebView"
     weak var delegate: AuthViewControllerDelegate?
     
     // MARK: - Private Properties
@@ -28,6 +28,7 @@ final class AuthViewController: UIViewController, WebViewViewControllerDelegate 
     private let storageManager = OAuth2TokenStorage()
     
     // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .ypBlack
@@ -49,10 +50,11 @@ final class AuthViewController: UIViewController, WebViewViewControllerDelegate 
     }
     
     // MARK: - Public Methods
+    
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
-        
         oauth2Service.fetchToken(code: code) { [weak self] result in
             guard let self = self else { return }
+            
             switch result {
             case .success(let tokenResponse):
                 storageManager.token = tokenResponse.accessToken
@@ -68,11 +70,11 @@ final class AuthViewController: UIViewController, WebViewViewControllerDelegate 
     }
     
     // MARK: - Private Methods
+    
     private func configureBackButton() {
         navigationController?.navigationBar.backIndicatorImage = UIImage(named: "nav_back_button")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "nav_back_button")
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem?.tintColor = UIColor.ypBlack
     }
-    
 }

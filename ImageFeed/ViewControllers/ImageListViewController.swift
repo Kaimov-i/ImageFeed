@@ -8,21 +8,24 @@
 import UIKit
 
 final class ImageListViewController: UIViewController {
-
+    // MARK: - Outlets
+    
     @IBOutlet private var tableView: UITableView!
-    
+
+    // MARK: - Private Properties
+
     private let showSingleImageSegueIdentifir = "ShowSingleImage"
-    private let photosName: [String] = Array(0...20).map { "\($0)"}
-    
+    private let photosName: [String] = Array(0...20).map { "\($0)" }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         tableView.backgroundColor = .ypBlack
         tableView.delegate = self
         tableView.dataSource = self
-       
         tableView.contentInset = UIEdgeInsets(top: 13, left: 0, bottom: 12, right: 0)
     }
-    
+
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
@@ -30,9 +33,9 @@ final class ImageListViewController: UIViewController {
         return formatter
     }()
 
-    func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
-     
+    private func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
         guard let image = UIImage(named: photosName[indexPath.row]) else { return }
+
         cell.cellImage.image = image
         cell.cellImage.contentMode = .scaleAspectFill
         cell.dateLabel.text = dateFormatter.string(from: .now)
@@ -60,7 +63,6 @@ final class ImageListViewController: UIViewController {
             super.prepare(for: segue, sender: sender)
         }
     }
-
 }
 
 extension ImageListViewController: UITableViewDataSource {
@@ -72,11 +74,10 @@ extension ImageListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
         
         guard let imagesListCell = cell as? ImagesListCell else { return UITableViewCell() }
-        
+
         configCell(for: imagesListCell, with: indexPath)
         return imagesListCell
     }
-    
 }
 
 extension ImageListViewController: UITableViewDelegate {
