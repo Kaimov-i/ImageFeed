@@ -7,9 +7,10 @@
 
 import UIKit
 
-class ProfilViewController: UIViewController {
-    
-    let userImage: UIImageView = {
+final class ProfilViewController: UIViewController {
+    // MARK: - Subviews
+
+    private let userImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Photo")
         imageView.layer.cornerRadius = imageView.bounds.width / 2
@@ -17,8 +18,8 @@ class ProfilViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
-    let userName: UILabel = {
+
+    private let userName: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 23, weight: .bold)
         label.text = "Екатерина Новикова"
@@ -26,8 +27,8 @@ class ProfilViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    let instLabel: UILabel = {
+
+    private let instLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         label.text = "@ekaterina_nov"
@@ -35,8 +36,8 @@ class ProfilViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    let userDescription: UILabel = {
+
+    private let userDescription: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         label.text = "Hello, world!"
@@ -44,8 +45,8 @@ class ProfilViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    let outButton: UIButton = {
+
+    private let outButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "Exit"), for: .normal)
         button.tintColor = .red
@@ -53,33 +54,39 @@ class ProfilViewController: UIViewController {
         return button
     }()
     
-    
-    
+    private lazy var profilStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [userName, instLabel, userDescription])
+        stackView.spacing = 8
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupViews()
+        setupConstraints()
     }
-    
+
+    // MARK: - Private Methods
 
     private func setupViews() {
         view.addSubview(userImage)
-        view.addSubview(userName)
-        view.addSubview(instLabel)
-        view.addSubview(userDescription)
+        view.addSubview(profilStackView)
         view.addSubview(outButton)
-        
+    }
+
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             userImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
             userImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             
-            userName.topAnchor.constraint(equalTo: userImage.bottomAnchor, constant: 8),
-            userName.leadingAnchor.constraint(equalTo: userImage.leadingAnchor),
-            
-            instLabel.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 8),
-            instLabel.leadingAnchor.constraint(equalTo: userImage.leadingAnchor),
-            
-            userDescription.topAnchor.constraint(equalTo: instLabel.bottomAnchor, constant: 8),
-            userDescription.leadingAnchor.constraint(equalTo: userImage.leadingAnchor),
+            profilStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            profilStackView.topAnchor.constraint(equalTo: userImage.bottomAnchor, constant: 8),
             
             outButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             outButton.centerYAnchor.constraint(equalTo: userImage.centerYAnchor),
@@ -87,5 +94,4 @@ class ProfilViewController: UIViewController {
             outButton.heightAnchor.constraint(equalToConstant: 24)
         ])
     }
-    
 }
